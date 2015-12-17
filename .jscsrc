@@ -40,7 +40,7 @@
     "disallowPaddingNewlinesInBlocks": true,
     "disallowPaddingNewLinesInObjects": null,
     "disallowParenthesesAroundArrowParam": null,
-    "disallowQuotedKeysInObjects": true,
+    "disallowQuotedKeysInObjects": null,
     "disallowSemicolons": null,
     "disallowShorthandArrowFunctions": null,
     "disallowSpaceAfterBinaryOperators": null,
