@@ -3,7 +3,7 @@
 
     var States = Backbone.Collection.extend({
         model: State,
-        url: '/data/states.json'
+        url: '/data/states.json',
     });
 
     var StatesView = Backbone.View.extend({
@@ -19,7 +19,7 @@
 
         render: function () {
             $(this.el).html(this.template({
-                states: this.collection.toJSON()[0]
+                states: this.collection.toJSON()
             }));
         }
     });

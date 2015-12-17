@@ -33,10 +33,10 @@
                     <th>Postal code</th>
                     <th>State</th>
                 </tr>
-                <% _.each(states, function (state, key) { %>
+                <% _.each(states, function (state) { %>
                     <tr>
-                        <td><%= key %></td>
-                        <td><%= state %></td>
+                        <td><%= state.abbreviation %></td>
+                        <td><%= state.name %></td>
                     </tr>
                 <% }); %>
             </table>
