@@ -3,14 +3,28 @@
 
     var States = Backbone.Collection.extend({
         model: State,
-        url: '/data/states.json'
+        url: '/data/states.json',
+
+        search: function (letters) {
+            if (letters === '') {
+                return this;
+            }
+            var pattern = new RegExp(letters, 'gi');
+            return this.filter(function (data) {
+                return pattern.test(data.get('name'));
+            });
+        }
     });
 
     var StatesView = Backbone.View.extend({
         initialize: function () {
-            _.bindAll(this, 'render', 'initCollection', 'initProperties', 'sortField');
+            _.bindAll(this, 'render', 'initCollection', 'initProperties', 'sortField', 'searchText', 'filterStates');
             this.initCollection();
             this.initProperties();
+
+            var searchTemplate = _.template($('#searchTemplate').html());
+            $(this.el).parent().prepend(searchTemplate());
+            $('#input-search').on('keyup', this.searchText);
         },
 
         template: _.template($('#statesTemplate').html()),
@@ -79,6 +93,22 @@
             this.collection.sort();
         },
 
+        searchText: function (elem) {
+            var textValue = $(elem.currentTarget).val();
+            if (textValue === '') {
+                this.render();
+                return;
+            }
+            this.filterStates(textValue);
+        },
+
+        filterStates: function (value) {
+            var result = new States(this.collection.search(value));
+            $(this.el).html(this.template({
+                states: result.toJSON()
+            }));
+        },
+
         render: function () {
             console.log('render!');
             $(this.el).html(this.template({
@@ -88,6 +118,6 @@
     });
 
     var app = new StatesView({
-        el: $('.container')
+        el: $('.daxx')
     });
 })();

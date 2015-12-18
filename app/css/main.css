@@ -1,8 +1,12 @@
+th {
+    cursor: pointer;
+}
+
 .container {
     max-width: 600px;
     padding: 30px 0 0;
 }
 
-th {
-    cursor: pointer;
+.panel {
+    margin-bottom: 0;
 }
