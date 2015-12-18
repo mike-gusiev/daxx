@@ -1,15 +1,11 @@
-var StatesFilter = {
+var StatesSort = {
 
     initSort: function () {
-        this.initProperties();
-        $(window).on('states_rendered', this.sortRendered.bind(this));
-    },
-
-    initProperties: function () {
         this.sortData = {
             a: 'asc',
             b: 'asc'
         };
+        $(window).on('states_rendered', this.sortRendered.bind(this));
     },
 
     sortRendered: function () {
@@ -42,7 +38,6 @@ var StatesFilter = {
     },
 
     sortField: function (elem) {
-        console.log('1');
         var field = this.getFieldName(elem);
         var sortType = this.getSortType(elem);
         this.collection.comparator = function (a, b) {
@@ -63,4 +58,5 @@ var StatesFilter = {
         }.bind(this);
         this.collection.sort();
     }
+
 };

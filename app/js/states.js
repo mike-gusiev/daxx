@@ -17,12 +17,8 @@ var States = Backbone.Collection.extend({
 
 var StatesView = Backbone.View.extend({
     initialize: function () {
-        _.bindAll(this, 'render', 'initCollection', 'searchText', 'filterStates');
+        _.bindAll(this, 'render');
         this.initCollection();
-
-        var searchTemplate = _.template($('#searchTemplate').html());
-        $(this.el).parent().prepend(searchTemplate());
-        $('#input-search').on('keyup', this.searchText);
     },
 
     template: _.template($('#statesTemplate').html()),
@@ -33,22 +29,6 @@ var StatesView = Backbone.View.extend({
             success: this.render
         });
         this.collection.on('sort', this.render, this);
-    },
-
-    searchText: function (elem) {
-        var textValue = $(elem.currentTarget).val();
-        if (textValue === '') {
-            this.render();
-            return;
-        }
-        this.filterStates(textValue);
-    },
-
-    filterStates: function (value) {
-        var result = new States(this.collection.search(value));
-        $(this.el).html(this.template({
-            states: result.toJSON()
-        }));
     },
 
     render: function () {
