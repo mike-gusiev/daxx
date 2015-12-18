@@ -1,6 +1,7 @@
 var State = Backbone.Model.extend();
 
 var States = Backbone.Collection.extend({
+
     model: State,
     url: '/data/states.json',
 
@@ -13,9 +14,11 @@ var States = Backbone.Collection.extend({
             return pattern.test(data.get('name'));
         });
     }
+
 });
 
 var StatesView = Backbone.View.extend({
+
     initialize: function () {
         _.bindAll(this, 'render');
         this.initCollection();
@@ -37,4 +40,5 @@ var StatesView = Backbone.View.extend({
         }));
         $(window).trigger('states_rendered', true);
     }
+
 });
