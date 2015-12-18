@@ -1,7 +1,6 @@
 (function () {
-
     var app = new StatesView({
-        el: $('.daxx')
+        el: $('.container')
     });
     _.extend(StatesView.prototype, StatesSort, StatesSearch);
     app.initSort();
